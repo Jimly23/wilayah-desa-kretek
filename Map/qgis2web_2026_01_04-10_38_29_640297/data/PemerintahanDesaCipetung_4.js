@@ -1,0 +1,1 @@
+var json_PemerintahanDesaCipetung_4 = {"type":"FeatureCollection","name":"PemerintahanDesaCipetung_4","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Balai Desa Cipetung"},"geometry":{"type":"Point","coordinates":[109.079516417909261,-7.256031829632839]}}]}

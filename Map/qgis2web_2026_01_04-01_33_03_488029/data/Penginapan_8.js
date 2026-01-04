@@ -1,0 +1,1 @@
+var json_Penginapan_8 = {"type":"FeatureCollection","name":"Penginapan_8","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"nama":"Villa Hj Jen"},"geometry":{"type":"Point","coordinates":[109.054727140312011,-7.285042657800026]}}]}

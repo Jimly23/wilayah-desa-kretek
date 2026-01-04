@@ -1,1 +1,0 @@
-var json_RumahHikam_4 = {"type":"FeatureCollection","name":"RumahHikam_4","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Rumah":"Rumah Hikam"},"geometry":{"type":"Point","coordinates":[109.051507639406253,-7.286194403939956]}}]}

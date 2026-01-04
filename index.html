@@ -1,50 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Wilayah Desa Kretek</title>
+  <meta charset="UTF-8">
+  <title>Website Informasi Desa Kretek</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="bg-animated" aria-hidden="true"></div>
-  <div class="container">
-  <div class="page-card">
-  <header>
-    <div class="brand">
-        <div class="brand-badge">
-          <img src="assets/GKL6_Logo_kabupaten_Brebes - Koleksilogo.com.png" alt="Seal of Brebes" class="logo">
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <img src="assets/GKL6_Logo_kabupaten_Brebes - Koleksilogo.com.png" alt="Logo Desa" class="hero-logo">
+
+    <h1>WELCOME</h1>
+    <p class="subtitle">Website Informasi Desa Kretek</p>
+
+    <!-- TOMBOL BERANDA -->
+    <div class="hero-buttons">
+      <a href="index.html">Beranda</a>
+      <a href="Tentang.html">Tentang</a>
+
+      <!-- DROPDOWN PETA DESA -->
+      <div class="hero-dropdown">
+        <div class="hero-dropbtn" role="button" tabindex="0">
+  Peta Desa ▼
+</div>
+        <div class="hero-dropdown-content">
+          <a href="Peta-desa.html?desa=kretek">Kretek</a>
+          <a href="Peta-desa.html?desa=paguyangan">Paguyangan</a>
+          <a href="Peta-desa.html?desa=pagojengan">Pagojengan</a>
+          <a href="Peta-desa.html?desa=cipetung">Cipetung</a>
         </div>
-      <div class="brand-title">Wilayah Desa Kretek</div>
+      </div>
+
+      <a href="Peta-kecamatan.html">Peta Kecamatan</a>
     </div>
-    <nav id="main-nav" role="navigation" aria-label="Primary navigation">
-      <a href="index.html" class="nav-item" tabindex="0">Beranda</a>
-      <a href="desa.html" class="nav-item" tabindex="0">Peta Desa</a>
-      <a href="Peta-kecamatan.html" class="nav-item" tabindex="0">Peta Kecamatan</a>
-      <a href="Tentang.html" class="nav-item" tabindex="0">Tentang</a>
-    </nav>
-  </header>
-  
-  <main>
-    <section class="hero">
-      <div class="shield">
-        <div class="shield-inner">
-          <img src="assets/GKL6_Logo_kabupaten_Brebes - Koleksilogo.com.png" class="shield-logo" alt="Logo besar">
-        </div>
-        <!-- <div class="shield-tag">❮</div> -->
-      </div>
-
-      <h1>"Brebes Berhias"(Bersih, Hijau, Indah, Aman, Sehat)</h1>
-      <p class="lead">Portal data spasial dan layanan publik untuk Wilayah Desa Kretek.</p>
-
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="Peta-desa.html">Lihat Peta</a>   
-      </div>
-    </section>
-  </main>
   </div>
-  </div>
+</section>
 
-  <script src="js/site.js"></script>
-</body>
-</html>
+<!-- JS DROPDOWN -->
+<script>
+  const dropBtn = document.querySelector(".hero-dropbtn");
+  const dropBox = document.querySelector(".hero-dropdown");
+
+  dropBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+    dropBox.classList.toggle("show");
+  });
+
+  document.addEventListener("click", function () {
+    dropBox.classList.remove("show");
+  })
+</script>
