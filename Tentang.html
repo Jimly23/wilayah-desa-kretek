@@ -1,79 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
-  <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Tentang — Wilayah Desa Kretek</title>
+<head>
+  <meta charset="UTF-8">
+  <title>Tentang Desa Kretek</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="style.css" />
-  </head>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .about-container {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 40px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.1);
+    }
+
+    .about-container h1 {
+      text-align: center;
+      color: #2A628F;
+      margin-bottom: 20px;
+    }
+
+    .about-container p {
+      line-height: 1.8;
+      font-size: 16px;
+      text-align: justify;
+      margin-bottom: 15px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .info-box {
+      background: #f4f7fa;
+      padding: 20px;
+      border-left: 5px solid #2A628F;
+      border-radius: 8px;
+    }
+
+    .info-box h3 {
+      margin-bottom: 10px;
+      color: #2A628F;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      background: #2A628F;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 25px;
+      text-decoration: none;
+    }
+
+    .back-button:hover {
+      background: #1e4d70;
+    }
+  </style>
+</head>
+
 <body>
-  <div class="container">
-    <div class="page-card">
-      <header>
-        <div class="brand">
-          <div class="brand-badge">
-            <img src="assets/GKL6_Logo_kabupaten_Brebes - Koleksilogo.com.png" alt="Seal of Brebes" class="logo">
-          </div>
-          <div class="brand-title">Wilayah Desa Kretek</div>
-        </div>
-        <nav id="main-nav" role="navigation" aria-label="Primary navigation">
-          <a href="index.html" class="nav-item" tabindex="0">Beranda</a>
-          <a href="desa.html" class="nav-item" tabindex="0">Peta Desa</a>
-          <a href="Peta-kecamatan.html" class="nav-item" tabindex="0">Peta Kecamatan</a>
-          <a href="Tentang.html" class="nav-item" tabindex="0">Tentang</a>
-        </nav>
-      </header>
 
-      <main>
-        <section class="about-hero">
-          <div class="about-meta">
-            <h1>Desa Kretek</h1>
-            <p class="lead">Desa Kretek adalah sebuah desa yang berada di Kecamatan Paguyangan, Kabupaten Brebes, Jawa Tengah, dikenal dengan potensi pertanian padi dan sayuran, serta memiliki objek wisata alam "Teras Padi" yang populer. Desa ini memiliki wilayah dataran rendah yang subur, terbagi menjadi 12 padukuhan, dan aktif dalam berbagai program pembangunan desa seperti penanganan stunting dan pendidikan anak tidak sekolah, dengan pemerintah desa yang berkomitmen memanfaatkan Dana Desa untuk kesejahteraan warga.</p>
-          </div>
-          <div class="stat-card">
-            <div class="stat-value">11.521</div>
-            <div class="stat-label">Populasi (2021)</div>
-          </div>
-        </section>
+<div class="about-container">
 
-        <section class="about-grid info-section">
-          <div class="about-card">
-            <h2>Informasi Utama</h2>
-            <ul class="info-list">
-              <li><strong>Lokasi:</strong> Kecamatan Paguyangan, Kabupaten Brebes, Jawa Tengah.</li>
-              <li><strong>Karakteristik:</strong> Dataran rendah, tanah subur (lempung hitam), dominasi lahan sawah.</li>
-              <li><strong>Komoditas Pertanian:</strong> Padi, jagung, ubi, cabai, tomat, caisin, terong.</li>
-              <li><strong>Padukuhan (Dukuh):</strong>
-                <div class="dukuh-list">
-                  <span>Warga Mulya</span>
-                  <span>Al Barokah</span>
-                  <span>Krajan</span>
-                  <span>Duren</span>
-                  <span>Bayur</span>
-                  <span>Dukuh Lor</span>
-                  <span>Tanjungsari</span>
-                  <span>Pesanggrahan 1</span>
-                  <span>Pesanggrahan 2</span>
-                  <span>Karangmangu</span>
-                  <span>Karang Anyar</span>
-                  <span>Panisihan</span>
-                </div>
-              </li>
-              <li><strong>Populasi (2021):</strong> Sekitar 11.521 jiwa.</li>
-            </ul>
-          </div>
+  <h1>Tentang Desa Kretek</h1>
 
-          <div class="about-card">
-            <h2>Daya Tarik & Program Desa</h2>
-            <p><strong>Wisata Teras Padi:</strong> Destinasi wisata alam yang asri dan populer, terutama saat libur tahun baru, menawarkan suasana pedesaan yang menenangkan.</p>
-            <p><strong>Program Desa:</strong> Desa Kretek aktif dalam program seperti Rembug Stunting untuk pencegahan stunting dan program mengatasi Anak Tidak Sekolah (ATS) menggunakan Dana Desa untuk mendukung kesejahteraan dan layanan sosial.</p>
-            <p class="muted">Pemerintah desa berkomitmen memanfaatkan Dana Desa untuk meningkatkan infrastruktur, pendidikan, dan kesehatan masyarakat.</p>
-          </div>
-        </section>
-      </main>
+  <p>
+    Desa Kretek merupakan salah satu desa yang berada di wilayah Kecamatan Paguyangan,
+    Kabupaten Brebes, Provinsi Jawa Tengah. Desa ini memiliki potensi sumber daya alam,
+    sosial, dan budaya yang menjadi modal utama dalam pembangunan desa yang berkelanjutan.
+  </p>
+
+  <p>
+    Website Desa Kretek dibuat sebagai media informasi dan layanan publik yang bertujuan
+    untuk meningkatkan transparansi, akuntabilitas, serta mempermudah masyarakat dalam
+    mengakses informasi terkait pemerintahan desa, peta wilayah, dan potensi desa.
+  </p>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <h3>🌱 Visi</h3>
+      <p>
+        Terwujudnya Desa Kretek yang maju, mandiri, dan sejahtera berbasis pelayanan publik
+        yang transparan dan partisipatif.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h3>🎯 Misi</h3>
+      <p>
+        Meningkatkan kualitas pelayanan masyarakat, pengelolaan potensi desa,
+        serta pemanfaatan teknologi informasi dalam tata kelola pemerintahan desa.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h3>🗺️ Wilayah Administrasi</h3>
+      <p>
+        Desa Kretek terdiri dari beberapa dusun, RT, dan RW yang tersebar dalam satu wilayah
+        administratif yang terintegrasi dengan sistem peta digital.
+      </p>
+    </div>
+
+    <div class="info-box">
+      <h3>🤝 Komitmen Desa</h3>
+      <p>
+        Pemerintah Desa Kretek berkomitmen untuk memberikan pelayanan terbaik serta membuka
+        ruang partisipasi masyarakat dalam pembangunan desa.
+      </p>
     </div>
   </div>
-  <script src="js/site.js"></script>
+
+  <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+
+</div>
+
 </body>
 </html>

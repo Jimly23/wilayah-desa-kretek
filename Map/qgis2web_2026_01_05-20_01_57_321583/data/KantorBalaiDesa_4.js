@@ -1,0 +1,1 @@
+var json_KantorBalaiDesa_4 = {"type":"FeatureCollection","name":"KantorBalaiDesa_4","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Balai Desa Paguyangan"},"geometry":{"type":"Point","coordinates":[109.035931578234965,-7.298139344867112]}}]}

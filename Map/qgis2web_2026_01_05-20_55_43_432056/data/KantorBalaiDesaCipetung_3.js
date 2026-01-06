@@ -1,0 +1,1 @@
+var json_KantorBalaiDesaCipetung_3 = {"type":"FeatureCollection","name":"KantorBalaiDesaCipetung_3","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Balai Desa Cipetung"},"geometry":{"type":"Point","coordinates":[109.079499207581236,-7.256097279128435]}}]}
