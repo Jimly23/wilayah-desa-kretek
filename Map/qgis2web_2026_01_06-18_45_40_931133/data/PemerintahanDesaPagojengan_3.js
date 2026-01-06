@@ -1,0 +1,1 @@
+var json_PemerintahanDesaPagojengan_3 = {"type":"FeatureCollection","name":"PemerintahanDesaPagojengan_3","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Balai Desa Pagojengan"},"geometry":{"type":"Point","coordinates":[109.023101467712706,-7.279451944433859]}}]}

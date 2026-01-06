@@ -1,52 +1,285 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
-  <title>Peta Kecamatan</title>
+  <title>Peta Kecamatan Paguyangan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      overflow-x: hidden; /* Mencegah scroll horizontal */
     }
 
-    /* Tombol kembali */
-    .back-button {
+    /* ================= HEADER ================= */
+    .main-header {
+      background: #1e6ad6;
+      height: 70px;
+      width: 100%;
       position: fixed;
-      top: 15px;
-      left: 15px;
-      z-index: 9999;
-      background: #2A628F;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      height: 100%;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
       color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    /* Hamburger Menu (Hidden on Desktop) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .header-nav a,
+    .dropdown-btn {
+      color: #e0edff;
       text-decoration: none;
-      padding: 10px 18px;
-      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .header-nav a:hover, .dropdown-btn:hover {
+        color: #fff;
+    }
+
+    .header-nav a.active {
+      color: #fff;
+      border-bottom: 3px solid #fff;
+      padding-bottom: 6px;
+    }
+
+    /* ================= DROPDOWN ================= */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 45px; /* Sedikit diturunkan agar rapi */
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      min-width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+      overflow: hidden;
+      z-index: 2000;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 14px;
+      text-decoration: none;
+      color: #333;
       font-size: 14px;
-      box-shadow: 0 3px 6px rgba(0,0,0,.3);
+      border-bottom: none; /* Reset border active parent */
     }
 
-    .back-button:hover {
-      background: #1e4d70;
+    .dropdown-content a:hover {
+      background: #f1f1f1;
     }
 
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+
+    /* ================= MAP ================= */
     iframe {
       border: none;
       width: 100%;
-      height: 100vh;
+      height: calc(100vh - 70px);
+      margin-top: 70px;
+      display: block;
+    }
+
+    /* ================= RESPONSIVE (MOBILE) ================= */
+    @media (max-width: 768px) {
+      .header-container {
+        padding: 0 20px;
+      }
+
+      .header-title {
+        font-size: 18px;
+      }
+
+      /* Tampilkan Tombol Hamburger */
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* Ubah Navigasi Menjadi Menu Mobile */
+      .header-nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #1e6ad6;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 20px;
+        transform: translateY(-150%); /* Sembunyikan ke atas */
+        transition: transform 0.3s ease-in-out;
+        z-index: 998;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+      }
+
+      /* Kelas aktif untuk memunculkan menu */
+      .header-nav.active {
+        transform: translateY(0);
+      }
+
+      /* Reset style active link di mobile agar tidak ada garis bawah aneh */
+      .header-nav a.active {
+        border-bottom: none;
+        color: #ffd700; /* Warna kuning untuk penanda aktif di mobile */
+      }
+
+      /* Dropdown Mobile Adjustment */
+      .dropdown-content {
+        position: static; /* Tidak melayang */
+        transform: none;
+        box-shadow: none;
+        background: #1555b0; /* Warna lebih gelap untuk kontras */
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+
+      .dropdown-content a {
+        color: #fff;
+      }
+      
+      .dropdown-content a:hover {
+        background: #0f428a;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<!-- Tombol kembali -->
-<a href="index.html" class="back-button">← Kembali ke Beranda</a>
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-title">Kec. Paguyangan</div>
 
-<!-- Peta QGIS -->
-<iframe 
-  src="Map/qgis2web_2026_01_04-00_45_23_229072/index.html">
-</iframe>
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <nav class="header-nav" id="nav-menu">
+        <a href="index.html">Beranda</a>
+
+        <div class="dropdown" id="desaDropdown">
+          <span class="dropdown-btn" id="dropdownBtn">Peta Desa ▾</span>
+          <div class="dropdown-content">
+            <a href="javascript:void(0)" onclick="loadDesa('kretek')">Desa Kretek</a>
+            <a href="javascript:void(0)" onclick="loadDesa('paguyangan')">Desa Paguyangan</a>
+            <a href="javascript:void(0)" onclick="loadDesa('pagojengan')">Desa Pagojengan</a>
+            <a href="javascript:void(0)" onclick="loadDesa('cipetung')">Desa Cipetung</a>
+          </div>
+        </div>
+
+        <a href="#" class="active">Peta Kecamatan</a>
+        <a href="tentang.html">Tentang</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <iframe id="mapFrame" src="Map/qgis2web_2026_01_04-00_45_23_229072/index.html">
+  </iframe>
+
+  <script>
+    /* ================= MENU & DROPDOWN LOGIC ================= */
+    const dropdown = document.getElementById("desaDropdown");
+    const dropdownBtn = document.getElementById("dropdownBtn");
+    const menuToggle = document.getElementById("mobile-menu");
+    const navMenu = document.getElementById("nav-menu");
+
+    // Toggle Menu Mobile
+    menuToggle.addEventListener('click', function() {
+        navMenu.classList.toggle('active');
+    });
+
+    // Toggle Dropdown
+    dropdownBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      dropdown.classList.toggle("show");
+    });
+
+    // Klik di luar menutup semuanya
+    document.addEventListener("click", function (e) {
+      // Tutup dropdown jika klik di luar dropdown
+      if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove("show");
+      }
+      
+      // Tutup menu mobile jika klik di luar header & bukan tombol toggle
+      if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          navMenu.classList.remove("active");
+      }
+    });
+
+    /* ================= MAP SWITCH ================= */
+    function loadDesa(desa) {
+      const maps = {
+        kretek: "Map/qgis2web_2026_01_06-19_11_14_565435/index.html",
+        paguyangan: "Map/qgis2web_2026_01_06-20_38_40_595287/index.html",
+        pagojengan: "Map/qgis2web_2026_01_06-18_45_40_931133/index.html",
+        cipetung: "Map/qgis2web_2026_01_06-19_45_25_496093/index.html"
+      };
+
+      if(maps[desa]) {
+        document.getElementById("mapFrame").src = maps[desa];
+      }
+      
+      // Tutup menu dan dropdown setelah memilih (penting untuk tampilan mobile)
+      dropdown.classList.remove("show");
+      navMenu.classList.remove("active");
+    }
+  </script>
 
 </body>
+
 </html>

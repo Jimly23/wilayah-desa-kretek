@@ -1,0 +1,1 @@
+var json_GarduPLN_6 = {"type":"FeatureCollection","name":"GarduPLN_6","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Gardu Induk PLN"},"geometry":{"type":"Point","coordinates":[109.02594154857556,-7.282916873236015]}}]}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
   <title>Peta Desa</title>
@@ -17,6 +18,7 @@
 
     body {
       font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Mencegah scroll horizontal */
     }
 
     /* =========================
@@ -30,11 +32,29 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 30px;
+      position: relative;
+      z-index: 1000;
     }
 
     .map-header-left {
       font-size: 22px;
       font-weight: bold;
+    }
+
+    /* Hamburger Menu (Hidden on Desktop) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
     }
 
     .map-header-nav {
@@ -47,6 +67,11 @@
       color: #fff;
       text-decoration: none;
       font-size: 15px;
+      transition: 0.2s;
+    }
+
+    .map-header-nav a:hover {
+      opacity: 0.8;
     }
 
     /* =========================
@@ -59,17 +84,19 @@
     .map-dropbtn {
       cursor: pointer;
       user-select: none;
+      font-size: 15px;
     }
 
     .map-dropdown-content {
       display: none;
       position: absolute;
       top: 38px;
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%); /* Center dropdown */
       background: #ffffff;
       min-width: 190px;
       border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
       overflow: hidden;
       z-index: 999;
     }
@@ -80,6 +107,7 @@
       text-decoration: none;
       color: #333;
       font-size: 14px;
+      text-align: left; /* Reset text alignment inside dropdown */
     }
 
     .map-dropdown-content a:hover {
@@ -97,22 +125,67 @@
       width: 100%;
       height: calc(100vh - 60px);
       border: none;
+      display: block;
     }
 
     /* =========================
-       RESPONSIVE
+       RESPONSIVE (MOBILE)
        ========================= */
     @media (max-width: 768px) {
       .map-header {
-        padding: 0 15px;
+        padding: 0 20px;
       }
 
       .map-header-left {
         font-size: 18px;
       }
 
+      /* Tampilkan Tombol Hamburger */
+      .menu-toggle {
+        display: flex;
+      }
+
+      /* Sembunyikan Navigasi Default */
       .map-header-nav {
-        gap: 15px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1464dc;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 20px;
+        transform: translateY(-150%); /* Geser ke atas (sembunyi) */
+        transition: transform 0.3s ease-in-out;
+        z-index: 998;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+      }
+
+      /* Kelas aktif untuk menampilkan menu */
+      .map-header-nav.active {
+        transform: translateY(0);
+      }
+
+      /* Penyesuaian Dropdown di Mobile */
+      .map-dropdown-content {
+        position: static; /* Agar tidak melayang di mobile */
+        transform: none;
+        box-shadow: none;
+        background: #1e5bbd; /* Sedikit lebih gelap agar kontras */
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+        border-radius: 5px;
+      }
+      
+      .map-dropdown-content a {
+        color: #fff;
+        text-align: center;
+      }
+
+      .map-dropdown-content a:hover {
+        background: #124fa8;
       }
     }
   </style>
@@ -120,80 +193,98 @@
 
 <body>
 
-<!-- =========================
-     HEADER
-     ========================= -->
-<header class="map-header">
-  <div class="map-header-left">
-    Kecamatan Paguyangan
-  </div>
-
-  <nav class="map-header-nav">
-    <a href="index.html">Beranda</a>
-
-    <div class="map-dropdown">
-      <span class="map-dropbtn">Peta Desa ▾</span>
-      <div class="map-dropdown-content">
-        <a href="Peta-desa.html?desa=kretek">Kretek</a>
-        <a href="Peta-desa.html?desa=paguyangan">Paguyangan</a>
-        <a href="Peta-desa.html?desa=pagojengan">Pagojengan</a>
-        <a href="Peta-desa.html?desa=cipetung">Cipetung</a>
-      </div>
+  <header class="map-header">
+    <div class="map-header-left">
+      Kec. Paguyangan
     </div>
 
-    <a href="Peta-kecamatan.html">Peta Kecamatan</a>
-    <a href="Tentang.html">Tentang</a>
-  </nav>
-</header>
+    <div class="menu-toggle" id="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
-<!-- =========================
-     PETA GIS
-     ========================= -->
-<iframe id="mapFrame" class="map-frame"></iframe>
+    <nav class="map-header-nav" id="nav-menu">
+      <a href="index.html">Beranda</a>
 
-<!-- =========================
-     SCRIPT
-     ========================= -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
+      <div class="map-dropdown">
+        <span class="map-dropbtn">Peta Desa ▾</span>
+        <div class="map-dropdown-content">
+          <a href="Peta-desa.html?desa=kretek">Kretek</a>
+          <a href="Peta-desa.html?desa=paguyangan">Paguyangan</a>
+          <a href="Peta-desa.html?desa=pagojengan">Pagojengan</a>
+          <a href="Peta-desa.html?desa=cipetung">Cipetung</a>
+        </div>
+      </div>
 
-    /* ===== DROPDOWN ===== */
-    const dropBtn = document.querySelector(".map-dropbtn");
-    const dropBox = document.querySelector(".map-dropdown");
+      <a href="Peta-kecamatan.html">Peta Kecamatan</a>
+      <a href="Tentang.html">Tentang</a>
+    </nav>
+  </header>
 
-    dropBtn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      dropBox.classList.toggle("show");
-    });
+  <iframe id="mapFrame" class="map-frame"></iframe>
 
-    document.addEventListener("click", function () {
-      dropBox.classList.remove("show");
-    });
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-    document
-      .querySelectorAll(".map-dropdown-content a")
-      .forEach(item => {
-        item.addEventListener("click", e => {
-          e.stopPropagation();
-        });
+      /* ===== MOBILE MENU TOGGLE ===== */
+      const menuToggle = document.getElementById('mobile-menu');
+      const navMenu = document.getElementById('nav-menu');
+
+      menuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
       });
 
-    /* ===== MAP SWITCH ===== */
-    const params = new URLSearchParams(window.location.search);
-    const desa = params.get("desa");
+      /* ===== DROPDOWN ===== */
+      const dropBtn = document.querySelector(".map-dropbtn");
+      const dropBox = document.querySelector(".map-dropdown");
 
-    const maps = {
-      kretek: "Map/qgis2web_2026_01_05-18_41_39_210925/index.html",
-      paguyangan: "Map/qgis2web_2026_01_05-20_01_57_321583/index.html",
-      pagojengan: "Map/qgis2web_2026_01_05-19_10_32_907333/index.html",
-      cipetung: "Map/qgis2web_2026_01_05-20_55_43_432056/index.html"
-    };
+      dropBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        dropBox.classList.toggle("show");
+      });
 
-    document.getElementById("mapFrame").src =
-      maps[desa] || maps.kretek;
+      // Tutup menu/dropdown jika klik di luar
+      document.addEventListener("click", function (e) {
+        // Tutup dropdown jika klik di luar dropdown
+        if (!dropBox.contains(e.target)) {
+            dropBox.classList.remove("show");
+        }
+        
+        // Tutup mobile menu jika klik di luar navbar dan bukan tombol toggle
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+            navMenu.classList.remove("active");
+        }
+      });
 
-  });
-</script>
+      document
+        .querySelectorAll(".map-dropdown-content a")
+        .forEach(item => {
+          item.addEventListener("click", e => {
+            e.stopPropagation();
+            // Opsional: Tutup menu setelah memilih link
+            navMenu.classList.remove("active");
+            dropBox.classList.remove("show");
+          });
+        });
+
+      /* ===== MAP SWITCH ===== */
+      const params = new URLSearchParams(window.location.search);
+      const desa = params.get("desa");
+
+      const maps = {
+        kretek: "Map/qgis2web_2026_01_06-19_11_14_565435/index.html",
+        paguyangan: "Map/qgis2web_2026_01_06-20_38_40_595287/index.html",
+        pagojengan: "Map/qgis2web_2026_01_06-18_45_40_931133/index.html",
+        cipetung: "Map/qgis2web_2026_01_06-19_45_25_496093/index.html"
+      };
+
+      document.getElementById("mapFrame").src =
+        maps[desa] || maps.kretek;
+
+    });
+  </script>
 
 </body>
+
 </html>

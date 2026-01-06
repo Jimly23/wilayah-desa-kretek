@@ -1,0 +1,1 @@
+var json_SekolahDesaCipetung_4 = {"type":"FeatureCollection","name":"SekolahDesaCipetung_4","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"SD Cipetung"},"geometry":{"type":"Point","coordinates":[109.079338284741482,-7.256574268997959]}}]}

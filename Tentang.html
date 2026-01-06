@@ -1,20 +1,141 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
-  <title>Tentang Desa Kretek</title>
+  <title>Tentang Kecamatan Paguyangan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="stylesheet" href="style.css">
-
   <style>
+    /* ================= RESET & GLOBAL ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      /* Memberi jarak agar konten tidak tertutup header fixed */
+      padding-top: 80px; 
+    }
+
+    /* ================= HEADER & NAVBAR ================= */
+    .main-header {
+      background: #1e6ad6;
+      height: 70px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: auto;
+      height: 100%;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-title {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    /* Hamburger Menu (Mobile) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .header-nav a,
+    .dropdown-btn {
+      color: #e0edff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .header-nav a:hover, .dropdown-btn:hover {
+      color: #fff;
+    }
+
+    .header-nav a.active {
+      color: #fff;
+      border-bottom: 3px solid #fff;
+      padding-bottom: 6px;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 45px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      min-width: 200px;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+      overflow: hidden;
+      z-index: 2000;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 14px;
+      color: #333;
+      font-size: 14px;
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background: #f1f1f1;
+      color: #333;
+    }
+
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+
+    /* ================= KONTEN TENTANG (PAGE CONTENT) ================= */
     .about-container {
       max-width: 1000px;
-      margin: 80px auto;
+      margin: 20px auto 60px auto; /* Margin atas disesuaikan */
       padding: 40px;
       background: #ffffff;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
     }
 
     .about-container h1 {
@@ -57,69 +178,183 @@
       padding: 10px 22px;
       border-radius: 25px;
       text-decoration: none;
+      transition: background 0.3s;
     }
 
     .back-button:hover {
       background: #1e4d70;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+      .header-container { padding: 0 20px; }
+      .header-title { font-size: 18px; }
+
+      /* Hamburger Visible */
+      .menu-toggle { display: flex; }
+
+      /* Mobile Nav */
+      .header-nav {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: #1e6ad6;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 20px;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+      }
+
+      .header-nav.active { transform: translateY(0); }
+      .header-nav a.active { border-bottom: none; color: #ffd700; }
+
+      /* Mobile Dropdown */
+      .dropdown-content {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        background: #1555b0;
+        width: 100%;
+        text-align: center;
+        margin-top: 10px;
+      }
+
+      .dropdown-content a { color: #fff; }
+      .dropdown-content a:hover { background: #0f428a; color: #fff; }
+
+      /* Mobile Content */
+      .about-container {
+        margin: 10px;
+        padding: 25px;
+      }
+      
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
 
-<div class="about-container">
+  <header class="main-header">
+    <div class="header-container">
+      <div class="header-title">Kec. Paguyangan</div>
 
-  <h1>Tentang Desa Kretek</h1>
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
 
-  <p>
-    Desa Kretek merupakan salah satu desa yang berada di wilayah Kecamatan Paguyangan,
-    Kabupaten Brebes, Provinsi Jawa Tengah. Desa ini memiliki potensi sumber daya alam,
-    sosial, dan budaya yang menjadi modal utama dalam pembangunan desa yang berkelanjutan.
-  </p>
+      <nav class="header-nav" id="nav-menu">
+        <a href="index.html">Beranda</a>
 
-  <p>
-    Website Desa Kretek dibuat sebagai media informasi dan layanan publik yang bertujuan
-    untuk meningkatkan transparansi, akuntabilitas, serta mempermudah masyarakat dalam
-    mengakses informasi terkait pemerintahan desa, peta wilayah, dan potensi desa.
-  </p>
+        <div class="dropdown" id="desaDropdown">
+          <span class="dropdown-btn" id="dropdownBtn">Peta Desa ▾</span>
+          <div class="dropdown-content">
+            <a href="Peta-desa.html?desa=kretek">Kretek</a>
+            <a href="Peta-desa.html?desa=paguyangan">Paguyangan</a>
+            <a href="Peta-desa.html?desa=pagojengan">Pagojengan</a>
+            <a href="Peta-desa.html?desa=cipetung">Cipetung</a>
+          </div>
+        </div>
 
-  <div class="info-grid">
-    <div class="info-box">
-      <h3>🌱 Visi</h3>
-      <p>
-        Terwujudnya Desa Kretek yang maju, mandiri, dan sejahtera berbasis pelayanan publik
-        yang transparan dan partisipatif.
-      </p>
+        <a href="Peta-kecamatan.html">Peta Kecamatan</a>
+        <a href="Tentang.html" class="active">Tentang</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="about-container">
+
+    <h1>Tentang Desa Kretek</h1>
+
+    <p>
+      Desa Kretek merupakan salah satu desa yang berada di wilayah Kecamatan Paguyangan,
+      Kabupaten Brebes, Provinsi Jawa Tengah. Desa ini memiliki potensi sumber daya alam,
+      sosial, dan budaya yang menjadi modal utama dalam pembangunan desa yang berkelanjutan.
+    </p>
+
+    <p>
+      Website Desa Kretek dibuat sebagai media informasi dan layanan publik yang bertujuan
+      untuk meningkatkan transparansi, akuntabilitas, serta mempermudah masyarakat dalam
+      mengakses informasi terkait pemerintahan desa, peta wilayah, dan potensi desa.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <h3>🌱 Visi</h3>
+        <p>
+          Terwujudnya Desa Kretek yang maju, mandiri, dan sejahtera berbasis pelayanan publik
+          yang transparan dan partisipatif.
+        </p>
+      </div>
+
+      <div class="info-box">
+        <h3>🎯 Misi</h3>
+        <p>
+          Meningkatkan kualitas pelayanan masyarakat, pengelolaan potensi desa,
+          serta pemanfaatan teknologi informasi dalam tata kelola pemerintahan desa.
+        </p>
+      </div>
+
+      <div class="info-box">
+        <h3>🗺️ Wilayah Administrasi</h3>
+        <p>
+          Desa Kretek terdiri dari beberapa dusun, RT, dan RW yang tersebar dalam satu wilayah
+          administratif yang terintegrasi dengan sistem peta digital.
+        </p>
+      </div>
+
+      <div class="info-box">
+        <h3>🤝 Komitmen Desa</h3>
+        <p>
+          Pemerintah Desa Kretek berkomitmen untuk memberikan pelayanan terbaik serta membuka
+          ruang partisipasi masyarakat dalam pembangunan desa.
+        </p>
+      </div>
     </div>
 
-    <div class="info-box">
-      <h3>🎯 Misi</h3>
-      <p>
-        Meningkatkan kualitas pelayanan masyarakat, pengelolaan potensi desa,
-        serta pemanfaatan teknologi informasi dalam tata kelola pemerintahan desa.
-      </p>
-    </div>
+    <a href="index.html" class="back-button">← Kembali ke Beranda</a>
 
-    <div class="info-box">
-      <h3>🗺️ Wilayah Administrasi</h3>
-      <p>
-        Desa Kretek terdiri dari beberapa dusun, RT, dan RW yang tersebar dalam satu wilayah
-        administratif yang terintegrasi dengan sistem peta digital.
-      </p>
-    </div>
-
-    <div class="info-box">
-      <h3>🤝 Komitmen Desa</h3>
-      <p>
-        Pemerintah Desa Kretek berkomitmen untuk memberikan pelayanan terbaik serta membuka
-        ruang partisipasi masyarakat dalam pembangunan desa.
-      </p>
-    </div>
   </div>
 
-  <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const menuToggle = document.getElementById('mobile-menu');
+      const navMenu = document.getElementById('nav-menu');
+      const dropdownBtn = document.getElementById('dropdownBtn');
+      const dropdown = document.getElementById('desaDropdown');
 
-</div>
+      // 1. Toggle Hamburger Menu
+      menuToggle.addEventListener('click', function () {
+        navMenu.classList.toggle('active');
+      });
+
+      // 2. Toggle Dropdown
+      dropdownBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        dropdown.classList.toggle("show");
+      });
+
+      // 3. Menutup menu jika klik di luar
+      document.addEventListener("click", function (e) {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove("show");
+        }
+        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+          navMenu.classList.remove("active");
+        }
+      });
+    });
+  </script>
 
 </body>
+
 </html>
