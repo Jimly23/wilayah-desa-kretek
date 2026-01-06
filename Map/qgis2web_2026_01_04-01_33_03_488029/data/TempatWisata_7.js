@@ -1,0 +1,1 @@
+var json_TempatWisata_7 = {"type":"FeatureCollection","name":"TempatWisata_7","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Teras Padi"},"geometry":{"type":"Point","coordinates":[109.056170003572433,-7.284168558065498]}}]}

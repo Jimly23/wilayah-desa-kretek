@@ -1,0 +1,1 @@
+var json_FasilitasKesehatanDesaPaguyangan_6 = {"type":"FeatureCollection","name":"FasilitasKesehatanDesaPaguyangan_6","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"id":null,"Nama":"Puskesmas Paguyangan"},"geometry":{"type":"Point","coordinates":[109.038130982682105,-7.30067642347226]}}]}
